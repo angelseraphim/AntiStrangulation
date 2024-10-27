@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Features;
+using Exiled.Events.EventArgs.Scp3114;
 using HarmonyLib;
 
 namespace AntiStrangulation
@@ -15,6 +16,7 @@ namespace AntiStrangulation
         {
             plugin = this;
             harmony = new Harmony("AntiStrangulation");
+            Exiled.Events.Handlers.Scp3114.Strangling += OnStrangling;
             harmony.PatchAll();
             base.OnEnabled();
         }
@@ -22,8 +24,11 @@ namespace AntiStrangulation
         public override void OnDisabled()
         {
             plugin = null;
+            Exiled.Events.Handlers.Scp3114.Strangling -= OnStrangling;
             harmony.UnpatchAll();
             base.OnDisabled();
         }
+
+        private void OnStrangling(StranglingEventArgs ev) => ev.IsAllowed = false;
     }
 }
