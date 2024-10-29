@@ -96,6 +96,7 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="Patches\Scp3114Patch.cs" />
+    <Compile Include="Patches\ScpSpawnerPatch.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

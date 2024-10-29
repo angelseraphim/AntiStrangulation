@@ -29,6 +29,9 @@ namespace AntiStrangulation
             base.OnDisabled();
         }
 
-        private void OnStrangling(StranglingEventArgs ev) => ev.IsAllowed = false;
+        private void OnStrangling(StranglingEventArgs ev)
+        {
+            ev.IsAllowed = false;
+        }
     }
 }

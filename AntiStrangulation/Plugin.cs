@@ -1,5 +1,7 @@
 ﻿using Exiled.API.Features;
 using HarmonyLib;
+using PlayerRoles.Spectating;
+using System;
 
 namespace AntiStrangulation
 {
@@ -8,6 +10,7 @@ namespace AntiStrangulation
         public override string Prefix => "AntiStrangulation";
         public override string Name => "AntiStrangulation";
         public override string Author => "angelseraphim.";
+        public override Version RequiredExiledVersion => new Version(8, 9, 11);
 
         public static Plugin plugin;
         public static Harmony harmony;
