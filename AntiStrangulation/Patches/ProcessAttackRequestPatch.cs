@@ -7,9 +7,9 @@ namespace AntiStrangulation.Patches
 {
     [HarmonyPatch(typeof(Scp3114Strangle), nameof(Scp3114Strangle.ProcessAttackRequest))]
 
-    internal class ProcessAttackRequestPatch
+    internal static class ProcessAttackRequestPatch
     {
-        private bool Prefix(Scp3114Strangle __instance, NetworkReader reader, ref StrangleTarget? __result)
+        private static bool Prefix(Scp3114Strangle __instance, NetworkReader reader, ref StrangleTarget? __result)
         {
             if (!Plugin.config.DisableStrangulation)
                 return true;

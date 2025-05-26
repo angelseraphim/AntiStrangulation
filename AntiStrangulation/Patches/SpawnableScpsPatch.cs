@@ -6,7 +6,7 @@ using PlayerRoles.RoleAssign;
 namespace AntiStrangulation.Patches
 {
     [HarmonyPatch(typeof(ScpSpawner), nameof(ScpSpawner.SpawnableScps), MethodType.Getter)]
-    internal class SpawnableScpsPatch
+    internal static class SpawnableScpsPatch
     {
         private static void Postfix(ref PlayerRoleBase[] __result)
         {

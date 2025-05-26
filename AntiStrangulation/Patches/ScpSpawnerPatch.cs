@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace AntiStrangulation.Patches
 {
     [HarmonyPatch(typeof(ScpSpawner), nameof(ScpSpawner.AssignScp))]
-    internal class ScpSpawnerPatch
+    internal static class ScpSpawnerPatch
     {
         private static bool Prefix(List<ReferenceHub> chosenPlayers, RoleTypeId scp, List<RoleTypeId> otherScps)
         {
