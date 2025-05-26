@@ -10,7 +10,7 @@ namespace AntiStrangulation.Patches
     {
         private static bool Prefix(List<ReferenceHub> chosenPlayers, RoleTypeId scp, List<RoleTypeId> otherScps)
         {
-            if (Plugin.config.DisableSpawn && scp == RoleTypeId.Scp3114)
+            if (Plugin.config.DisableAutoSpawn && scp == RoleTypeId.Scp3114)
                 return false;
 
             return true;

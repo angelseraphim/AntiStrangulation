@@ -4,6 +4,6 @@
     {
         public bool Debug { get; set; } = false;
         public bool DisableStrangulation { get; set; } = true;
-        public bool DisableSpawn { get; set; } = false;
+        public bool DisableAutoSpawn { get; set; } = false;
     }
 }
