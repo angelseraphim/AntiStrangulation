@@ -1,32 +1,36 @@
-﻿using Exiled.API.Features;
-using HarmonyLib;
-using PlayerRoles.Spectating;
+﻿using HarmonyLib;
+using LabApi.Features;
+using LabApi.Loader.Features.Plugins;
 using System;
 
 namespace AntiStrangulation
 {
     public class Plugin : Plugin<Config>
     {
-        public override string Prefix => "AntiStrangulation";
         public override string Name => "AntiStrangulation";
+        public override string Description => "AntiStrangulation";
         public override string Author => "angelseraphim.";
-        public override Version RequiredExiledVersion => new Version(8, 9, 11);
+        public override Version Version => new Version(1, 0, 0);
+        public override Version RequiredApiVersion => new Version(LabApiProperties.CompiledVersion);
 
-        public static Plugin plugin;
-        public static Harmony harmony;
-        public override void OnEnabled()
+        internal static Config config;
+
+        private Harmony harmony;
+
+        public override void Enable()
         {
-            plugin = this;
-            harmony = new Harmony("AntiStrangulation");
+            config = Config;
+            harmony = new Harmony(Name);
+
             harmony.PatchAll();
-            base.OnEnabled();
         }
 
-        public override void OnDisabled()
+        public override void Disable()
         {
-            plugin = null;
             harmony.UnpatchAll();
-            base.OnDisabled();
+
+            config = null;
+            harmony = null;
         }
     }
 }
