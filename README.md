@@ -5,9 +5,7 @@
 ![Downloads](https://img.shields.io/github/downloads/angelseraphim/AntiStrangulation/total?label=Downloads&color=333333&style=for-the-badge)
 
 ---
-
-**AntiStrangulation** is a plugin for SCP: Secret Laboratory that allows advanced control over SCP-3114’s strangulation mechanic and its auto-spawn behavior, especially during Halloween events.
-
+AntiStrangelation is a **LabApi** plugin that allows you to control the mechanics of SCP-3114's strangulation and auto-spawn.
 ---
 
 ## Features
@@ -30,8 +28,8 @@ true — SCP-3114 cannot strangle players.
 false — Strangulation is allowed.
 
 disable_auto_spawn
-false — If it’s Halloween, SCP-3114 will NOT auto-spawn.
-true — SCP-3114 will always auto-spawn regardless of Halloween.
+true — If it’s Halloween, SCP-3114 will NOT auto-spawn.
+false — SCP-3114 will always auto-spawn regardless of Halloween.
 
 Installation
 Download the latest release from the Releases page.
