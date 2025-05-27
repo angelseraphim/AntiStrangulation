@@ -2,7 +2,7 @@
 
 ![SCP:SL Plugin](https://img.shields.io/badge/SCP--SL-Plugin-blue.svg)
 ![Language: C#](https://img.shields.io/badge/language-C%23-blue.svg)
-![Downloads](https://img.shields.io/badge/downloads-100%2B-brightgreen)
+![Downloads]()
 
 ---
 
