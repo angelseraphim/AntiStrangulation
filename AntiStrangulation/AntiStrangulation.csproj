@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -85,7 +86,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="Patches\ScpSpawnerPatch.cs" />
     <Compile Include="Patches\ProcessAttackRequestPatch.cs" />
-    <Compile Include="Patches\SpawnableScpsPatch.cs" />
+    <Compile Include="Patches\SpawnScpsPatch.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
