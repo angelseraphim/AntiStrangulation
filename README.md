@@ -2,7 +2,7 @@
 
 ![SCP:SL Plugin](https://img.shields.io/badge/SCP--SL-Plugin-blue.svg)
 ![Language: C#](https://img.shields.io/badge/language-C%23-blue.svg)
-![Downloads]()
+![Downloads](https://img.shields.io/github/downloads/angelseraphim/AntiStrangulation/total?label=Downloads&color=333333&style=for-the-badge)
 
 ---
 
