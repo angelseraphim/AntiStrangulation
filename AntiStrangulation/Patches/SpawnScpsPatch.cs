@@ -23,7 +23,8 @@ namespace AntiStrangulation.Patches
                 roles.Add(ScpSpawner.NextScp);
             }
 
-            roles.Add(RoleTypeId.Scp3114);
+            if (Plugin.random.Next(0, ScpSpawner.MaxSpawnableScps) < 2)
+                roles.Add(RoleTypeId.Scp3114);
 
             int n = roles.Count;
 
