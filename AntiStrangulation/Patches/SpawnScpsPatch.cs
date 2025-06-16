@@ -20,19 +20,13 @@ namespace AntiStrangulation.Patches
 
             for (int i = 0; i < targetScpNumber; i++)
             {
+                if (Plugin.random.Next(0, ScpSpawner.MaxSpawnableScps) < 2 && !roles.Contains(RoleTypeId.Scp3114))
+                {
+                    roles.Add(RoleTypeId.Scp3114);
+                    continue;
+                }
+
                 roles.Add(ScpSpawner.NextScp);
-            }
-
-            if (Plugin.random.Next(0, ScpSpawner.MaxSpawnableScps) < 2)
-                roles.Add(RoleTypeId.Scp3114);
-
-            int n = roles.Count;
-
-            while (n > 1)
-            {
-                n--;
-                int k = Plugin.random.Next(n + 1);
-                (roles[k], roles[n]) = (roles[n], roles[k]);
             }
 
             foreach (RoleTypeId role in roles)
@@ -42,6 +36,7 @@ namespace AntiStrangulation.Patches
             }
 
             List<ReferenceHub> chosenPlayers = ScpPlayerPicker.ChoosePlayers(targetScpNumber);
+
             while (ScpSpawner.EnqueuedScps.Count > 0)
             {
                 RoleTypeId scp = ScpSpawner.EnqueuedScps[0];
