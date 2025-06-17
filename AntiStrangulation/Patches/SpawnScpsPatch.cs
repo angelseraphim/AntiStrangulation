@@ -2,7 +2,7 @@
 using LabApi.Features.Console;
 using PlayerRoles;
 using PlayerRoles.RoleAssign;
-using System.Collections.Generic;
+using LabApi.Features.Wrappers;
 
 namespace AntiStrangulation.Patches
 {
@@ -11,24 +11,21 @@ namespace AntiStrangulation.Patches
     {
         private static bool Prefix(int targetScpNumber)
         {
-            if (Plugin.config.DisableAutoSpawn)
+            // Only spawn SCP-3114 if there are enough players in the server and the spawn chance is met
+            if (Plugin.config.DisableAutoSpawn || Plugin.config.MinimumPlayers > Player.Count ||
+                Plugin.random.Next(0, 100) >= Plugin.config.SpawnChance)
                 return true;
 
             ScpSpawner.EnqueuedScps.Clear();
+            ScpSpawner.EnqueuedScps.Add(RoleTypeId.Scp3114);
 
-            for (int i = 0; i < targetScpNumber; i++)
+            for (var i = 0; i < targetScpNumber - 1; i++)
             {
-                RoleTypeId nextRole = Plugin.random.Next(0, ScpSpawner.MaxSpawnableScps) > 1 && !ScpSpawner.EnqueuedScps.Contains(RoleTypeId.Scp3114)
-                    ? RoleTypeId.Scp3114
-                    : ScpSpawner.NextScp;
-
-                if (!ScpSpawner.EnqueuedScps.Contains(nextRole) && ScpSpawner.EnqueuedScps.Count < ScpSpawner.MaxSpawnableScps)
-                    ScpSpawner.EnqueuedScps.Add(nextRole);
+                ScpSpawner.EnqueuedScps.Add(ScpSpawner.NextScp);
             }
 
-            List<ReferenceHub> chosenPlayers = ScpPlayerPicker.ChoosePlayers(targetScpNumber);
-
-            foreach (RoleTypeId role in ScpSpawner.EnqueuedScps.ToArray())
+            var chosenPlayers = ScpPlayerPicker.ChoosePlayers(targetScpNumber);
+            foreach (var role in ScpSpawner.EnqueuedScps.ToArray())
             {
                 Logger.Debug(role.ToString(), Plugin.config.Debug);
 
