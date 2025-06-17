@@ -14,34 +14,26 @@ namespace AntiStrangulation.Patches
             if (Plugin.config.DisableAutoSpawn)
                 return true;
 
-            List<RoleTypeId> roles = new List<RoleTypeId>();
-
             ScpSpawner.EnqueuedScps.Clear();
 
             for (int i = 0; i < targetScpNumber; i++)
             {
-                if (Plugin.random.Next(0, ScpSpawner.MaxSpawnableScps) < 2 && !roles.Contains(RoleTypeId.Scp3114))
-                {
-                    roles.Add(RoleTypeId.Scp3114);
-                    continue;
-                }
+                RoleTypeId nextRole = Plugin.random.Next(0, ScpSpawner.MaxSpawnableScps) > 1 && !ScpSpawner.EnqueuedScps.Contains(RoleTypeId.Scp3114)
+                    ? RoleTypeId.Scp3114
+                    : ScpSpawner.NextScp;
 
-                roles.Add(ScpSpawner.NextScp);
-            }
-
-            foreach (RoleTypeId role in roles)
-            {
-                Logger.Info(role.ToString());
-                ScpSpawner.EnqueuedScps.Add(role);
+                if (!ScpSpawner.EnqueuedScps.Contains(nextRole) && ScpSpawner.EnqueuedScps.Count < ScpSpawner.MaxSpawnableScps)
+                    ScpSpawner.EnqueuedScps.Add(nextRole);
             }
 
             List<ReferenceHub> chosenPlayers = ScpPlayerPicker.ChoosePlayers(targetScpNumber);
 
-            while (ScpSpawner.EnqueuedScps.Count > 0)
+            foreach (RoleTypeId role in ScpSpawner.EnqueuedScps.ToArray())
             {
-                RoleTypeId scp = ScpSpawner.EnqueuedScps[0];
-                ScpSpawner.EnqueuedScps.RemoveAt(0);
-                ScpSpawner.AssignScp(chosenPlayers, scp, ScpSpawner.EnqueuedScps);
+                Logger.Debug(role.ToString(), Plugin.config.Debug);
+
+                ScpSpawner.EnqueuedScps.Remove(role);
+                ScpSpawner.AssignScp(chosenPlayers, role, ScpSpawner.EnqueuedScps);
             }
 
             return false;
