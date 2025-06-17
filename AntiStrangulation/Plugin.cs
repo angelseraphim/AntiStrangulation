@@ -20,7 +20,7 @@ namespace AntiStrangulation
         public override void Enable()
         {
             config = Config;
-            random = new Random();
+            random = new Random(DateTime.Now.Second);
             harmony = new Harmony(Name);
 
             harmony.PatchAll();
