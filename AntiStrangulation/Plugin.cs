@@ -9,7 +9,7 @@ namespace AntiStrangulation
         public override string Name => "AntiStrangulation";
         public override string Description => "AntiStrangulation";
         public override string Author => "angelseraphim.";
-        public override Version Version => new Version(2, 4, 0);
+        public override Version Version => new Version(2, 4, 1);
         public override Version RequiredApiVersion => new Version(1, 0, 2);
 
         internal static Config config;

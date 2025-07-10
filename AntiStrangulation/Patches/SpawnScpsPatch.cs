@@ -18,7 +18,7 @@ namespace AntiStrangulation.Patches
 
             for (int i = 0; i < targetScpNumber; i++)
             {
-                RoleTypeId nextRole = Plugin.random.Next(0, ScpSpawner.MaxSpawnableScps) > 1 && !ScpSpawner.EnqueuedScps.Contains(RoleTypeId.Scp3114)
+                RoleTypeId nextRole = Plugin.random.Next(0, ScpSpawner.MaxSpawnableScps) == 0 && !ScpSpawner.EnqueuedScps.Contains(RoleTypeId.Scp3114)
                     ? RoleTypeId.Scp3114
                     : ScpSpawner.NextScp;
 
