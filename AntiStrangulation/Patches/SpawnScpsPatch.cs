@@ -1,8 +1,11 @@
 ﻿using HarmonyLib;
 using LabApi.Features.Console;
+using LabApi.Features.Wrappers;
 using PlayerRoles;
+using PlayerRoles.PlayableScps;
 using PlayerRoles.RoleAssign;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AntiStrangulation.Patches
 {
@@ -11,10 +14,15 @@ namespace AntiStrangulation.Patches
     {
         private static bool Prefix(int targetScpNumber)
         {
-            if (Plugin.config.DisableAutoSpawn)
+            if (Plugin.config.DisableAutoSpawn || PlayerRoleLoader.AllRoles.Any(x => x.Key == RoleTypeId.Scp3114 && x.Value is ISpawnableScp))
                 return true;
 
             ScpSpawner.EnqueuedScps.Clear();
+
+            int scpRoleCount = PlayerRoleLoader.AllRoles.Count(x => x.Value is ISpawnableScp);
+
+            if (Player.List.Count(x => !x.IsHost) / 5 > scpRoleCount)
+                ScpSpawner.EnqueuedScps.Add(RoleTypeId.Scp3114);
 
             for (int i = 0; i < targetScpNumber; i++)
             {
